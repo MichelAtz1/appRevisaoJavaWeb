@@ -4,16 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login</title>
+<title>Logou na principal</title>
 </head>
 <body>
-
-	<form action="ServletController">
-		<label for="Login">Login:</label>
-		<input type="text" id="login" name="login"> <br>
-		<label for="Senha">Senha:</label>
-		<input type="text" id="senha" name="senha"> <br>
-		<button type="submit">LOGAR:</button>
-	</form>
+<h1>Logou na principal</h1>
 </body>
 </html>
