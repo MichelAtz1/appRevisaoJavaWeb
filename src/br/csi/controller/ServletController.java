@@ -37,6 +37,7 @@ public class ServletController extends HttpServlet {
 		
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
+		String opcao =  request.getParameter("opcao");
 		
 		Usuario u = new Usuario();
 		
@@ -46,27 +47,44 @@ public class ServletController extends HttpServlet {
 		UsuarioDao uD = new UsuarioDao();
 		RequestDispatcher dispatcher;
 		
-		try {
-			boolean retorno = uD.autenticado(u);
-			
-			if(retorno){
-				String pagina = "/principal.jsp";
-				dispatcher = getServletContext().getRequestDispatcher(pagina);
-				dispatcher.forward(request, response);
+		
+		if(opcao.equals("Logar")){
+			try {
+				boolean retorno = uD.autenticado(u);
 				
-			}else{
+				if(retorno){
+					String pagina = "/WEB-INF/jsp/principal.jsp";
+					request.setAttribute("usuario", u);
+					dispatcher = getServletContext().getRequestDispatcher(pagina);
+					dispatcher.forward(request, response);
+					
+				}else{
+					
+					String pagina = "/index.jsp";
+					request.setAttribute("msg", "Erro ao Logar!");
+					dispatcher = getServletContext().getRequestDispatcher(pagina);
+					dispatcher.forward(request, response);
+				}
 				
-				String pagina = "index.jsp";
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				String pagina = "/index.jsp";
 				dispatcher = getServletContext().getRequestDispatcher(pagina);
 				dispatcher.forward(request, response);
 			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			String pagina = "index.jsp";
+		
+		}else if(opcao.equals("CADASTRARUSUARIO")){
+			String pagina = "/WEB-INF/jsp/cadastroUsuario.jsp";
+			request.setAttribute("usuario", u);
 			dispatcher = getServletContext().getRequestDispatcher(pagina);
 			dispatcher.forward(request, response);
+			
+			
+		}else{
+
+			System.out.println("não tá indo para lugar nenhum!");
+		 
 		}
 		
 	}

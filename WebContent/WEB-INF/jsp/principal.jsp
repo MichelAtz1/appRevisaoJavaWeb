@@ -7,6 +7,11 @@
 <title>Logou na principal</title>
 </head>
 <body>
-<h1>Logou na principal</h1>
+<h1>${usuario.login} - Autenticado!</h1>
+
+
+
+
+<a href="ServletController?opcao=CADASTRARUSUARIO">Clique aqui Para Cadastrar um usuario!</a>
 </body>
 </html>

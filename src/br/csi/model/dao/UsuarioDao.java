@@ -1,6 +1,7 @@
 package br.csi.model.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,8 +33,13 @@ public class UsuarioDao {
 		
 		Connection c = conectaBDPostgres.getConexao();
 		Statement stmt = c.createStatement();
-		String sql ="Select * from usuario where login = '"+u.getLogin()+"' and senha='"+u.getSenha()+"';";
-		ResultSet rs = stmt.executeQuery(sql);
+		//String sql ="Select * from usuario where login = '"+u.getLogin()+"' and senha='"+u.getSenha()+"';";
+		String sql = "select * from usuario where login=? and senha=?";
+		
+		PreparedStatement stmtPre = c.prepareStatement(sql);
+		stmtPre.setString(1, u.getLogin());
+		stmtPre.setString(2, u.getSenha());
+		ResultSet rs = stmtPre.executeQuery();
 		
 		while(rs.next()){
 			
