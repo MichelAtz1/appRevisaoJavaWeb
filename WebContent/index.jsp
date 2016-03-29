@@ -12,12 +12,12 @@
 </head>
 <body>
 
-	<form action="mvc?Logica=LogarLogica" >
+	<form action="/appRevisaoJavaWeb/mvc?logica=LogarLogica" method="post">
 		<label for="Login">Login:</label>
 		<input type="text" id="login" name="login"> <br>
 		<label for="Senha">Senha:</label>
 		<input type="text" id="senha" name="senha"> <br>
-		<button type="submit" name="opcao" value="Logar">LOGAR:</button>
+		<button type="submit" value="logar">LOGAR:</button>
 	</form>
 	
 	<c:if test= "${not empty msg}">

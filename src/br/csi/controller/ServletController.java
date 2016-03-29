@@ -33,7 +33,6 @@ public class ServletController extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//System.out.println("Chamou Servlet Controle!!!");
 		
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");

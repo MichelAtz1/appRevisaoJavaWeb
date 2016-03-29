@@ -40,6 +40,9 @@ public class ServletMVC extends HttpServlet {
 		doGet(request, response);
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//String parametro =request.get
+		
 		System.out.println(" entrou no mvc servet");
 		String log = request.getParameter("logica");
 		String classe = "br.csi.controller.logica."+log;
@@ -50,11 +53,10 @@ public class ServletMVC extends HttpServlet {
 			Class classeCarregada = Class.forName(classe);
 			LogarLogica logLogica=(LogarLogica) classeCarregada.newInstance();
 			String fluxo = logLogica.executa(request, response);
-			request.getRequestDispatcher(fluxo)
-			.forward(request, response);
+			request.getRequestDispatcher(fluxo).forward(request, response);
 			
 		}catch(Exception e){
-			
+			e.printStackTrace();
 			
 		}
 		
